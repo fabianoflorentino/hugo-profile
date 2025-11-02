@@ -5,7 +5,7 @@
     {{ $recentPostsCount := .Site.Params.footer.recentPosts.count | default 3 }}
     {{ $recentPosts := where .Site.RegularPages "Section" $recentPostsPath | first $recentPostsCount }}
     <div class="h3 text-center text-secondary py-3">
-        {{ .Site.Params.footer.recentPosts.title | default "Recent Posts" }}
+        {{ .Site.Params.footer.recentPosts.title | default (i18n "recentPosts") }}
     </div>
     <div class="row justify-content-center">
         {{ range $recentPosts }}
@@ -28,7 +28,7 @@
                 </div>
                 <div class="mt-auto card-footer">
                     <span class="float-start">{{ .Date.Format (.Site.Params.datesFormat.articleRecent | default "January 2, 2006") }}</span>
-                    <a href="{{ .RelPermalink }}" class="float-end btn btn-outline-info btn-sm">{{ .Site.Params.terms.read | default "Read" }}</a>
+                    <a href="{{ .RelPermalink }}" class="float-end btn btn-outline-info btn-sm">{{ .Site.Params.terms.read | default (i18n "read") }}</a>
                 </div>
             </div>
         </div>

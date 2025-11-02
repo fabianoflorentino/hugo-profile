@@ -1,0 +1,67 @@
+# Navigation
+[about]
+other = "About"
+
+[experience]
+other = "Experience"
+
+[education]
+other = "Education"
+
+[projects]
+other = "Projects"
+
+[achievements]
+other = "Achievements"
+
+[contact]
+other = "Contact"
+
+# Search
+[searchPlaceholder]
+other = "Ctrl + k to Search..."
+
+# Sections
+[getInTouch]
+other = "Get in Touch"
+
+[recentPosts]
+other = "Recent Posts"
+
+# Buttons and Links
+[read]
+other = "Read"
+
+[featured]
+other = "Featured"
+
+# Content
+[minRead]
+other = "min read"
+
+[tableOfContents]
+other = "Table Of Contents"
+
+[tags]
+other = "Tags"
+
+[social]
+other = "Social"
+
+[emailText]
+other = "Check out this site"
+
+# Forms
+[enterYourEmail]
+other = "Enter your email"
+
+[enterYourMessage]
+other = "Enter your message"
+
+# Footer
+[copyright]
+other = "All Rights Reserved"
+
+# 404 Page
+[pageNotFound]
+other = "404 page not found"

@@ -1,0 +1,67 @@
+# Navigation
+[about]
+other = "Sobre"
+
+[experience]
+other = "Experiência"
+
+[education]
+other = "Educação"
+
+[projects]
+other = "Projetos"
+
+[achievements]
+other = "Conquistas"
+
+[contact]
+other = "Contato"
+
+# Search
+[searchPlaceholder]
+other = "Ctrl + k para pesquisar..."
+
+# Sections
+[getInTouch]
+other = "Entre em contato"
+
+[recentPosts]
+other = "Postagens recentes"
+
+# Buttons and Links
+[read]
+other = "Ler"
+
+[featured]
+other = "Destaque"
+
+# Content
+[minRead]
+other = "min de leitura"
+
+[tableOfContents]
+other = "Índice"
+
+[tags]
+other = "Tags"
+
+[social]
+other = "Social"
+
+[emailText]
+other = "Confira este site"
+
+# Forms
+[enterYourEmail]
+other = "Digite seu e-mail"
+
+[enterYourMessage]
+other = "Digite sua mensagem"
+
+# Footer
+[copyright]
+other = "Todos os direitos reservados"
+
+# 404 Page
+[pageNotFound]
+other = "Página não encontrada"
