@@ -40,6 +40,44 @@
           <article class="page-content  p-2">
           {{ .Content | emojify }}
           </article>
+
+          {{/* Related posts by tags */}}
+          {{- $related := slice -}}
+          {{- $seen := newScratch -}}
+          {{- with .Params.tags -}}
+            {{- range . -}}
+              {{- $tagKey := . | urlize -}}
+              {{- with index $.Site.Taxonomies.tags $tagKey -}}
+                {{- range .Pages -}}
+                  {{- if and (ne .RelPermalink $.RelPermalink) (not ($seen.Get .RelPermalink)) -}}
+                    {{- $seen.Set .RelPermalink true -}}
+                    {{- $related = $related | append . -}}
+                  {{- end -}}
+                {{- end -}}
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
+          {{- $related = sort $related "Date" "desc" -}}
+          {{- $related = first 5 $related -}}
+          {{- if gt (len $related) 0 -}}
+          <hr class="my-5">
+          <div class="related-posts mb-4">
+            <h4>
+              {{- if eq .Site.Language.Lang "pt" -}}
+                Posts relacionados
+              {{- else -}}
+                Related posts
+              {{- end -}}
+            </h4>
+            <ul class="list-unstyled">
+              {{- range $related -}}
+              <li class="mb-2">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              </li>
+              {{- end -}}
+            </ul>
+          </div>
+          {{- end -}}
         </div>
       </div>
       <div class="col-sm-12 col-md-12 col-lg-3">
