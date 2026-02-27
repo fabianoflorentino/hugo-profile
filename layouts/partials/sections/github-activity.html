@@ -4,6 +4,7 @@
 {{ $username := (index $cfg "username") | default "fabianoflorentino" }}
 {{ $defaultTitle := cond (eq .Site.Language.Lang "pt") "Atividades do GitHub" "GitHub activities" }}
 {{ $title := (index $cfg "title") | default $defaultTitle }}
+{{ $chartURL := printf "https://ghchart.rshah.org/%s" $username }}
 <section id="github-activity" class="py-5">
     <div class="container">
         <h3 class="text-center">{{ $title }}</h3>
@@ -11,13 +12,19 @@
             <div class="row justify-content-center px-3 px-md-5 px-lg-5">
                 <div class="col-12 text-center">
                     <a href="https://github.com/{{ $username }}" target="_blank" rel="noopener noreferrer" title="GitHub">
-                        <img
-                            class="img-fluid mx-auto d-block"
-                            src="https://ghchart.rshah.org/{{ $username }}"
-                            alt="GitHub contributions for {{ $username }}"
-                            loading="lazy"
-                            referrerpolicy="no-referrer"
-                        >
+                        {{ with resources.GetRemote $chartURL }}
+                            <div class="github-activity-chart">
+                                {{ .Content | safeHTML }}
+                            </div>
+                        {{ else }}
+                            <img
+                                class="img-fluid mx-auto d-block"
+                                src="{{ $chartURL }}"
+                                alt="GitHub contributions for {{ $username }}"
+                                loading="lazy"
+                                referrerpolicy="no-referrer"
+                            >
+                        {{ end }}
                     </a>
                 </div>
             </div>

@@ -49,3 +49,22 @@ body.dark #moon {
 body:not(.dark) #sun {
     display: none;
 }
+
+#github-activity .github-activity-chart {
+    overflow-x: auto;
+}
+
+#github-activity .github-activity-chart svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.dark #github-activity .github-activity-chart rect[data-score="0"] {
+    fill: var(--secondary-background-color) !important;
+}
+
+.dark #github-activity .github-activity-chart text {
+    fill: var(--text-secondary-color) !important;
+}
