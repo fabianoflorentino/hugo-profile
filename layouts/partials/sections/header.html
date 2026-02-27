@@ -200,6 +200,24 @@
                     </li>
                     {{ end }}
 
+
+                    <!-- Language Switcher -->
+                    <li class="nav-item navbar-text">
+                        <div class="text-center">
+                            {{ $translations := .AllTranslations }}
+                            {{ if not $translations }}
+                                {{ $translations = .Site.Home.AllTranslations }}
+                            {{ end }}
+
+                            {{ range $translations }}
+                                {{ if ne $.Site.Language.Lang .Language.Lang }}
+                                    <a class="btn btn-link p-1" href="{{ .RelPermalink }}" title="Switch to {{ .Language.LanguageName }}">
+                                        {{ .Language.LanguageName }}
+                                    </a>
+                                {{ end }}
+                            {{ end }}
+                        </div>
+                    </li>
                 </ul>
 
             </div>
