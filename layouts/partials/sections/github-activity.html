@@ -2,17 +2,17 @@
 {{ $enabled := (index $cfg "enable") | default false }}
 {{ if $enabled }}
 {{ $username := (index $cfg "username") | default "fabianoflorentino" }}
-{{ $defaultTitle := cond (eq .Site.Language.Lang "pt") "Atividade no GitHub" "GitHub activity" }}
+{{ $defaultTitle := cond (eq .Site.Language.Lang "pt") "Atividades do GitHub" "GitHub activities" }}
 {{ $title := (index $cfg "title") | default $defaultTitle }}
 <section id="github-activity" class="py-5">
     <div class="container">
         <h3 class="text-center">{{ $title }}</h3>
         <div class="px-0 px-md-5 px-lg-5">
             <div class="row justify-content-center px-3 px-md-5 px-lg-5">
-                <div class="col-12">
+                <div class="col-12 text-center">
                     <a href="https://github.com/{{ $username }}" target="_blank" rel="noopener noreferrer" title="GitHub">
                         <img
-                            class="img-fluid"
+                            class="img-fluid mx-auto d-block"
                             src="https://ghchart.rshah.org/{{ $username }}"
                             alt="GitHub contributions for {{ $username }}"
                             loading="lazy"
