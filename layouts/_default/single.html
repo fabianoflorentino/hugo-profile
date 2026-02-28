@@ -41,6 +41,78 @@
           {{ .Content | emojify }}
           </article>
 
+          {{/* Series navigation (previous/next within a `series`) */}}
+          {{- $seriesParam := .Params.series -}}
+          {{- $seriesName := "" -}}
+          {{- if $seriesParam -}}
+            {{- if reflect.IsSlice $seriesParam -}}
+              {{- $seriesName = (index $seriesParam 0) -}}
+            {{- else -}}
+              {{- $seriesName = $seriesParam -}}
+            {{- end -}}
+          {{- end -}}
+          {{- if $seriesName -}}
+            {{- $seriesKey := $seriesName | urlize -}}
+            {{- with index .Site.Taxonomies.series $seriesKey -}}
+              {{- $seriesPages := .Pages.ByDate -}}
+              {{- $scratch := newScratch -}}
+              {{- range $i, $p := $seriesPages -}}
+                {{- if eq $p.RelPermalink $.RelPermalink -}}
+                  {{- $scratch.Set "idx" $i -}}
+                {{- end -}}
+              {{- end -}}
+              {{- $idx := $scratch.Get "idx" | default -1 -}}
+              {{- if ge $idx 0 -}}
+                {{- $prev := false -}}
+                {{- $next := false -}}
+                {{- if gt $idx 0 -}}
+                  {{- $prev = index $seriesPages (sub $idx 1) -}}
+                {{- end -}}
+                {{- if lt (add $idx 1) (len $seriesPages) -}}
+                  {{- $next = index $seriesPages (add $idx 1) -}}
+                {{- end -}}
+                {{- if or $prev $next -}}
+                  <hr class="my-5">
+                  <div class="series-nav mb-4">
+                    <h4>
+                      {{- if eq $.Site.Language.Lang "pt" -}}
+                        Navegação da série: {{ $seriesName }}
+                      {{- else -}}
+                        Series navigation: {{ $seriesName }}
+                      {{- end -}}
+                    </h4>
+                    <div class="d-flex justify-content-between flex-wrap gap-3">
+                      <div>
+                        {{- with $prev -}}
+                          <small class="text-muted">
+                            {{- if eq $.Site.Language.Lang "pt" -}}
+                              Anterior
+                            {{- else -}}
+                              Previous
+                            {{- end -}}
+                          </small><br>
+                          <a href="{{ .RelPermalink }}">&larr; {{ .Title }}</a>
+                        {{- end -}}
+                      </div>
+                      <div class="text-end ms-auto">
+                        {{- with $next -}}
+                          <small class="text-muted">
+                            {{- if eq $.Site.Language.Lang "pt" -}}
+                              Próximo
+                            {{- else -}}
+                              Next
+                            {{- end -}}
+                          </small><br>
+                          <a href="{{ .RelPermalink }}">{{ .Title }} &rarr;</a>
+                        {{- end -}}
+                      </div>
+                    </div>
+                  </div>
+                {{- end -}}
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
+
           {{/* Related posts by tags */}}
           {{- $related := slice -}}
           {{- $seen := newScratch -}}
