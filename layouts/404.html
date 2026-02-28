@@ -3,12 +3,12 @@
 {{ end }}
 
 {{ define "title" }}
-{{ .Site.Title }} | {{ .Site.Params.terms.pageNotFound | default "404 page not found" }}
+{{ .Site.Title }} | {{ .Site.Params.terms.pageNotFound | default "" }}
 {{ end }}
 
 {{ define "main" }}
 <div class="container py-5 text-center">
-    <img src="{{ .Site.Params.staticPath }}/404.png" alt='{{ .Site.Params.terms.pageNotFound | default "404 page not found" }}' class="img-fluid" width="40%">
-    <h1>{{ .Site.Params.terms.pageNotFound | default "404 page not found" }}</h1>
+    <img src="{{ .Site.Params.staticPath }}/404.jpg" alt='{{ .Site.Params.terms.pageNotFound | default "" }}' class="img-fluid" width="40%">
+    <h1>{{ .Site.Params.terms.pageNotFound | default "" }}</h1>
 </div>
 {{ end }}
